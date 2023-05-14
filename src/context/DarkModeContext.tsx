@@ -1,25 +1,28 @@
-import { PaletteMode, useMediaQuery } from '@mui/material';
 import { ReactNode, createContext, useState } from 'react';
 
+type ThemeMode = 'light' | 'dark';
+
 export type DarkModeContextType = {
-  theme: PaletteMode;
+  theme: ThemeMode;
   toggleDarkMode: () => void;
 };
 
 export const DarkModeContext = createContext<DarkModeContextType | null>(null);
 
 export function DarkModeProvider({ children }: { children: ReactNode }) {
-  const isDarkThemePreferred = useMediaQuery('(prefers-colo-scheme: dark)');
+  const systemPreferences: ThemeMode = window.matchMedia(
+    '(prefers-color-scheme: dark)'
+  ).matches
+    ? 'dark'
+    : 'light';
 
-  const [theme, setTheme] = useState<PaletteMode>(
-    !isDarkThemePreferred ? 'light' : 'dark'
-  );
+  const [theme, setTheme] = useState<ThemeMode>(systemPreferences);
 
   const toggleDarkMode = () => setTheme(theme === 'dark' ? 'light' : 'dark');
 
   return (
-    <DarkModeContext.Provider
-      value={{ theme, toggleDarkMode }}
-    ></DarkModeContext.Provider>
+    <DarkModeContext.Provider value={{ theme, toggleDarkMode }}>
+      {children}
+    </DarkModeContext.Provider>
   );
 }

@@ -4,6 +4,6 @@ import {
   DarkModeContextType,
 } from '../context/DarkModeContext';
 
-export default function useTheme() {
+export default function useDarkMode() {
   return useContext(DarkModeContext) as DarkModeContextType;
 }
