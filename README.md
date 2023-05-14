@@ -25,7 +25,7 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 
 ### Screenshot
 
-![Screen](https://postimg.cc/XGMgnNTD)
+[![Screen](https://i.postimg.cc/pTrcYpkx/screen.png)](https://postimg.cc/XGMgnNTD)
 
 ## My process
 
